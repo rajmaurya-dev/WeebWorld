@@ -14,11 +14,13 @@ import ClickOutHandler from "react-clickout-handler";
 import { useState } from "react";
 export default function PostCard() {
   const [dropdownopen, setDropdownopen] = useState(false);
+  const dropdownLink =
+    "flex gap-3 py-2 items-center hover:bg-socialBlue hover:text-white -mx-2 px-4 transition-all rounded-md hover:scale-110 hover:shadow-md shadow-gray-300";
   return (
     <>
       <main className="">
         <Card>
-          <div className="flex gap-3">
+          <div className="flex gap-3 ">
             <div>
               <Avatar />
             </div>
@@ -45,19 +47,19 @@ export default function PostCard() {
                 <div className="relative">
                   {dropdownopen && (
                     <div className="absolute flex flex-col gap-2 -right-6 bg-white shadow-md shadow-gray-300 p-3 rounded-md border border-gray-100 w-52">
-                      <a className="flex items-center gap-2" href="">
+                      <a className={dropdownLink} href="">
                         <BsBookmarkCheck />
                         <h3>Save Weeblet</h3>
                       </a>
-                      <a className="flex items-center gap-2" href="">
+                      <a className={dropdownLink} href="">
                         <TbBellRinging />
                         <h3>Turn notification</h3>
                       </a>
-                      <a className="flex items-center gap-2" href="">
+                      <a className={dropdownLink} href="">
                         <BiHide />
                         <h3>Hide weeblet</h3>
                       </a>
-                      <a className="flex items-center gap-2" href="">
+                      <a className={dropdownLink} href="">
                         <BsTrash />
                         <h3>Delete weeblet</h3>
                       </a>
