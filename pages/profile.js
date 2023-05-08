@@ -1,6 +1,7 @@
 import Avatar from "@/components/Avatar";
 import Card from "@/components/Card";
 import Layout from "@/components/Layout";
+import PostCard from "@/components/PostCard";
 import Link from "next/link";
 import { BsFilePostFill, BsInfoSquare } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
@@ -28,26 +29,30 @@ export default function ProfilePage() {
                 </p>
               </div>
             </div>
-            <div className="mt-4 flex gap-5">
-              <Link className="" href={"/"}>
+            <div className="mt-4  ml-2 flex gap-0">
+              <Link
+                className="flex items-center gap-2 px-3 py-1 font-bold text-blue-800 rounded-t-md border-blue-700 border-b-4"
+                href={"/"}
+              >
                 <BsFilePostFill />
                 Posts
               </Link>
-              <Link className="" href={"/"}>
+              <Link className="flex items-center gap-2 px-3 py-1" href={"/"}>
                 <BsInfoSquare />
                 About
               </Link>
-              <Link className="" href={"/"}>
+              <Link className="flex items-center gap-2 px-3 py-1" href={"/"}>
                 <FaUserFriends />
                 Friends
               </Link>
-              <Link className="" href={"/"}>
+              <Link className="flex items-center gap-2 px-3 py-1" href={"/"}>
                 <GrGallery />
                 Photos
               </Link>
             </div>
           </div>
         </Card>
+        <PostCard />
       </Layout>
     </>
   );
