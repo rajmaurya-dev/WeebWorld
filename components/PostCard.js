@@ -12,6 +12,7 @@ import { BsBookmarkCheck } from "react-icons/bs";
 import { BiHide } from "react-icons/bi";
 import ClickOutHandler from "react-clickout-handler";
 import { useState } from "react";
+import Link from "next/link";
 export default function PostCard() {
   const [dropdownopen, setDropdownopen] = useState(false);
   const dropdownLink =
@@ -22,13 +23,20 @@ export default function PostCard() {
         <Card>
           <div className="flex gap-3 ">
             <div>
-              <Avatar />
+              <Link href={"/profile"}>
+                <Avatar />
+              </Link>
             </div>
             <div className="grow">
               <p>
-                <a className="font-semibold" href="#">
-                  Naruto&nbsp;
-                </a>
+                <Link href={"/profile"}>
+                  <span
+                    className="font-semibold cursor-pointer hover:underline"
+                    href="#"
+                  >
+                    Naresh&nbsp;
+                  </span>
+                </Link>
                 added a new <span className="text-socialBlue">weeblet</span>
               </p>
               <p className="text-gray-500 text-sm ">2 Hour ago</p>
