@@ -16,16 +16,16 @@ export default function PostFormCard() {
           placeholder={"Whats on your mind"}
         />
       </div>
-      <div className="flex gap-5 mt-1">
-        <div className="flex gap-3 items-center">
+      <div className="flex gap-2 md:gap-5 mt-1">
+        <div className="flex gap-1 md:gap-3 items-center">
           <FaUserAlt />
           <button>People</button>
         </div>
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-1 md:gap-3 items-center">
           <SiOpenstreetmap />
           <button>Check in</button>
         </div>
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-1 md:gap-3 items-center">
           <MdMood />
           <button>Mood</button>
         </div>
