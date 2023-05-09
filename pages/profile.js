@@ -83,16 +83,16 @@ export default function ProfilePage() {
             <Card>
               <h2 className="text-3xl mb-2">About me</h2>
               <p>
-                Hey there, fellow otakus! I'm Sarah, and I'm a huge anime fan. I
-                absolutely love One Piece and Naruto, and I'm always looking for
-                new recommendations. When I'm not binging anime, you can usually
-                find me playing video games or hanging out with my cats. I'm
-                excited to connect with other anime enthusiasts on WeebWorld and
-                share my love for all things anime!
+                Hey there, fellow otakus! I am Naresh, and I am a huge anime
+                fan. I absolutely love One Piece and Naruto, and I am always
+                looking for new recommendations. When I am not binging anime,
+                you can usually find me playing video games or hanging out with
+                my cats. I am excited to connect with other anime enthusiasts on
+                WeebWorld and share my love for all things anime!
               </p>
               <p className="mt-2">
-                I'm a 25-year-old software engineer living in San Francisco.
-                I've been into anime since I was a kid, and I've watched
+                I am a 25-year-old software engineer living in San Francisco. I
+                have been into anime since I was a kid, and I have watched
                 hundreds of series over the years. One Piece and Naruto are
                 definitely my all-time favorites, but I also really enjoy
                 slice-of-life and romance anime. In my free time, I like to read

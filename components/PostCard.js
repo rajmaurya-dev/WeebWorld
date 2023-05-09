@@ -81,7 +81,7 @@ export default function PostCard() {
             <p className="my-3 text-sm">
               Just weebleted about my favorite anime scene on WeebWorld! 😍 This
               moment from Attack on Titan still gives me chills every time I
-              watch it. Who else loves this show? #AttackOnTitan #AnimeLove"
+              watch it. Who else loves this show? #AttackOnTitan #AnimeLove
             </p>
             <div className="overflow-hidden">
               <img
