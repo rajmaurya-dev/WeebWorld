@@ -54,7 +54,7 @@ export default function NavigationCard() {
           <BiNotification />
           Notifications
         </Link>
-        <Link href="" className={nonActiveLinksClasses}>
+        <Link href="/login" className={nonActiveLinksClasses}>
           <BiLogOut />
           Logout
         </Link>
