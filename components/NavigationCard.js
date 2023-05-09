@@ -5,7 +5,7 @@ import { BsFillBookmarkHeartFill } from "react-icons/bs";
 import Link from "next/link";
 export default function NavigationCard() {
   const router = useRouter();
-  const { pathname } = router;
+  const { asPath: pathname } = router;
   const activeLinksClasses =
     "flex gap-3 py-3 my-1 items-center bg-socialBlue text-white -mx-10 px-10 rounded-md shadow-green-300";
   const nonActiveLinksClasses =
@@ -23,7 +23,14 @@ export default function NavigationCard() {
           <BiHome />
           Home
         </Link>
-        <Link href="" className={nonActiveLinksClasses}>
+        <Link
+          href="/profile/friends"
+          className={
+            pathname === "/profile/friends"
+              ? activeLinksClasses
+              : nonActiveLinksClasses
+          }
+        >
           <BiGroup />
           Friends
         </Link>
