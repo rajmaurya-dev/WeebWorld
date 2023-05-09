@@ -34,11 +34,23 @@ export default function NavigationCard() {
           <BiGroup />
           Friends
         </Link>
-        <Link href="" className={nonActiveLinksClasses}>
+        <Link
+          href="/saved"
+          className={
+            pathname === "/saved" ? activeLinksClasses : nonActiveLinksClasses
+          }
+        >
           <BsFillBookmarkHeartFill />
           Saved Posts
         </Link>
-        <Link href="" className={nonActiveLinksClasses}>
+        <Link
+          href="/notifications"
+          className={
+            pathname === "notification"
+              ? activeLinksClasses
+              : nonActiveLinksClasses
+          }
+        >
           <BiNotification />
           Notifications
         </Link>
