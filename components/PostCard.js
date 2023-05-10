@@ -108,9 +108,9 @@ export default function PostCard() {
             <div>
               <Avatar />
             </div>
-            <div className="border grow rounded-full relative">
+            <div className="border grow rounded-full relative z-20">
               <textarea
-                className="p-2 px-4 h-12 rounded-full w-full"
+                className="p-2 px-4 h-12 rounded-full w-full z-[999]"
                 placeholder="Leave a Weeblics"
               ></textarea>
               <button className="absolute top-3 right-3">

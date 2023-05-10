@@ -7,9 +7,16 @@ import PostFormCard from "@/components/PostFormCard";
 import Avatar from "@/components/Avatar";
 import PostCard from "@/components/PostCard";
 import Layout from "@/components/Layout";
+import { useSession } from "@supabase/auth-helpers-react";
+import LoginPage from "./login";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const session = useSession();
+  console.log(session);
+  if (!session) {
+    return <LoginPage />;
+  }
   return (
     <>
       <Layout>
