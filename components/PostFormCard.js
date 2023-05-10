@@ -4,17 +4,51 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdMood } from "react-icons/md";
 import { FaShareSquare } from "react-icons/fa";
 import Avatar from "./Avatar";
+import { useEffect, useState } from "react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 export default function PostFormCard() {
+  const [profile, setProfile] = useState(null);
+  const [content, setContent] = useState();
+  const supabase = useSupabaseClient();
+  const session = useSession();
+
+  useEffect(() => {
+    // alert(session.user.id);
+    supabase
+      .from("profiles")
+      .select()
+      .eq("id", session.user.id)
+      .then((results) => {
+        if (results.data.length) {
+          setProfile(results.data[0]);
+        }
+      });
+  }, []);
+  const createPost = () => {
+    supabase
+      .from("posts")
+      .insert({
+        author: session.user.id,
+        content,
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
   return (
     <Card>
       <div className="flex gap-1">
         <div>
-          <Avatar />
+          <Avatar url={profile && profile.avatar} />
         </div>
-        <textarea
-          className="grow p-3 h-14"
-          placeholder={"Whats on your mind"}
-        />
+        {profile && (
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="grow p-3 h-14"
+            placeholder={`Whats on your mind ${profile && profile.name}`}
+          />
+        )}
       </div>
       <div className="flex gap-5 mt-1">
         <div className="">
@@ -36,7 +70,10 @@ export default function PostFormCard() {
           </button>
         </div>
         <div className="grow text-right">
-          <button className="bg-socialBlue text-white px-6 py-2 rounded-md">
+          <button
+            onClick={createPost}
+            className="bg-socialBlue text-white px-6 py-2 rounded-md"
+          >
             <FaShareSquare />
           </button>
         </div>
