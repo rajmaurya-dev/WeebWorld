@@ -9,8 +9,8 @@ import {
 export default function LoginPage() {
   return (
     <Layout hidenavigation={true}>
-      <div className="h-screen flex items-center">
-        <div className="max-w-xs grow mx-auto -mt-34">
+      <div className=" flex items-center justify-center">
+        <div className="max-w-xs grow mt-28">
           <h3 className="text-6xl mb-4 text-center text-gray-400">Login</h3>
 
           <Card>

@@ -35,9 +35,7 @@ export default function ProfilePage() {
             <div className="p-2">
               <div className="ml-28">
                 <h1 className=" text-3xl font-bold">Naruto Uchiha</h1>
-                <p className="text-gray-500 leading-2">
-                  Ninja school, Hidden Leaf Village
-                </p>
+                <p className="text-gray-500 leading-2">Hidden Leaf Village</p>
               </div>
             </div>
             <div className="mt-2  ml-2 flex justify-around gap-0">
@@ -158,7 +156,7 @@ export default function ProfilePage() {
         {isPhotos && (
           <div>
             <Card>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid md:grid-cols-2 gap-4">
                 <div className="rounded-md overflow-hidden h-48 items-center flex">
                   <img
                     src="https://images.unsplash.com/photo-1501769752-a59efa2298ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"

@@ -86,7 +86,7 @@ export default function PostCard() {
             <div className="overflow-hidden">
               <img
                 className="rounded-md"
-                src="https://external-preview.redd.it/oKEpTvgj6wChtmuqvx5KtUIn-8bECpJRfJHbbEkmwX4.png?format=pjpg&auto=webp&s=b47affa6768f522af35083462f81fc1922cc4e71"
+                src="https://images.unsplash.com/photo-1600758208050-a22f17dc5bb9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                 alt=""
               />
             </div>
