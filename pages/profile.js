@@ -40,34 +40,34 @@ export default function ProfilePage() {
                 </p>
               </div>
             </div>
-            <div className="mt-2  ml-2 flex gap-0">
+            <div className="mt-2  ml-2 flex justify-around gap-0">
               <Link
                 className={isPosts ? activeClasses : tabClasses}
                 href={"/profile/posts"}
               >
                 <BsFilePostFill />
-                Posts
+                <span className="hidden md:block">Posts</span>
               </Link>
               <Link
                 className={isAbout ? activeClasses : tabClasses}
                 href={"/profile/about"}
               >
                 <BsInfoSquare />
-                About
+                <span className="hidden md:block">About</span>
               </Link>
               <Link
                 className={isFriends ? activeClasses : tabClasses}
                 href={"/profile/friends"}
               >
                 <FaUserFriends />
-                Friends
+                <span className="hidden md:block">Friends</span>
               </Link>
               <Link
                 className={isPhotos ? activeClasses : tabClasses}
                 href={"/profile/photos"}
               >
                 <GrGallery />
-                Photos
+                <span className="hidden md:block">Photos</span>
               </Link>
             </div>
           </div>
