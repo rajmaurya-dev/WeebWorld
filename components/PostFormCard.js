@@ -6,7 +6,7 @@ import { FaShareSquare } from "react-icons/fa";
 import Avatar from "./Avatar";
 import { useEffect, useState } from "react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-export default function PostFormCard() {
+export default function PostFormCard(onPost) {
   const [profile, setProfile] = useState(null);
   const [content, setContent] = useState();
   const supabase = useSupabaseClient();
@@ -32,7 +32,13 @@ export default function PostFormCard() {
         content,
       })
       .then((response) => {
-        console.log(response);
+        if (!response.error) {
+          setContent("");
+          alert("Created!");
+          if (onPost) {
+            onPost();
+          }
+        }
       });
   };
   return (

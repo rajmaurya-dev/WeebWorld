@@ -13,7 +13,7 @@ import { BiHide } from "react-icons/bi";
 import ClickOutHandler from "react-clickout-handler";
 import { useState } from "react";
 import Link from "next/link";
-export default function PostCard() {
+export default function PostCard({ content, profiles: profile }) {
   const [dropdownopen, setDropdownopen] = useState(false);
   const dropdownLink =
     "flex gap-3 py-2 items-center hover:bg-socialBlue hover:text-white -mx-2 px-4 transition-all rounded-md hover:scale-110 hover:shadow-md shadow-gray-300";
@@ -24,7 +24,7 @@ export default function PostCard() {
           <div className="flex gap-3 ">
             <div>
               <Link href={"/profile"}>
-                <Avatar />
+                <Avatar url={profile.avatar} />
               </Link>
             </div>
             <div className="grow">
@@ -34,7 +34,7 @@ export default function PostCard() {
                     className="font-semibold cursor-pointer hover:underline"
                     href="#"
                   >
-                    Naresh&nbsp;
+                    {profile.name}&nbsp;
                   </span>
                 </Link>
                 added a new <span className="text-socialBlue">weeblet</span>
@@ -78,11 +78,7 @@ export default function PostCard() {
             </div>
           </div>
           <div>
-            <p className="my-3 text-sm">
-              Just weebleted about my favorite anime scene on WeebWorld! 😍 This
-              moment from Attack on Titan still gives me chills every time I
-              watch it. Who else loves this show? #AttackOnTitan #AnimeLove
-            </p>
+            <p className="my-3 text-sm">{content}</p>
             <div className="overflow-hidden">
               <img
                 className="rounded-md"
