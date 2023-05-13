@@ -4,26 +4,15 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdMood } from "react-icons/md";
 import { FaShareSquare } from "react-icons/fa";
 import Avatar from "./Avatar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-export default function PostFormCard(onPost) {
-  const [profile, setProfile] = useState(null);
+import { UserContext } from "@/contexts/userContext";
+export default function PostFormCard({ onPost }) {
   const [content, setContent] = useState();
   const supabase = useSupabaseClient();
   const session = useSession();
-
-  useEffect(() => {
-    // alert(session.user.id);
-    supabase
-      .from("profiles")
-      .select()
-      .eq("id", session.user.id)
-      .then((results) => {
-        if (results.data.length) {
-          setProfile(results.data[0]);
-        }
-      });
-  }, []);
+  const { profile } = useContext(UserContext);
+  console.log(profile);
   const createPost = () => {
     supabase
       .from("posts")

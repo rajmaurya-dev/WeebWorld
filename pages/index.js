@@ -10,15 +10,46 @@ import Layout from "@/components/Layout";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import LoginPage from "./login";
 import { useEffect, useState } from "react";
+import { UserContext } from "@/contexts/userContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const session = useSession();
   const supabase = useSupabaseClient();
   const [posts, setPosts] = useState();
+  const [profile, setProfile] = useState(null);
   useEffect(() => {
     fetchPost();
   }, []);
+  // useEffect(() => {
+  //   if (!session?.user?.id) {
+  //     return;
+  //   }
+  //   supabase
+  //     .from("profiles")
+  //     .select()
+  //     .eq("id", session.user.id)
+  //     .then((results) => {
+  //       if (results.data.length) {
+  //         setProfile(results.data[0]);
+  //       }
+  //     });
+  // }, [session?.user?.id]);
+
+  useEffect(() => {
+    if (!session?.user?.id) {
+      return;
+    }
+    supabase
+      .from("profiles")
+      .select()
+      .eq("id", session.user.id)
+      .then((result) => {
+        if (result.data.length) {
+          setProfile(result.data[0]);
+        }
+      });
+  }, [session?.user?.id]);
 
   if (!session) {
     return <LoginPage />;
@@ -33,8 +64,10 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <PostFormCard onPost={fetchPost} />
-        {posts && posts.map((post) => <PostCard {...post} />)}
+        <UserContext.Provider value={{ profile }}>
+          <PostFormCard onPost={fetchPost} />
+          {posts && posts.map((post) => <PostCard key={post.id} {...post} />)}
+        </UserContext.Provider>
       </Layout>
     </>
   );

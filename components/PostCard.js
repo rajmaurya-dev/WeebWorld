@@ -11,12 +11,19 @@ import { TbBellRinging } from "react-icons/tb";
 import { BsBookmarkCheck } from "react-icons/bs";
 import { BiHide } from "react-icons/bi";
 import ClickOutHandler from "react-clickout-handler";
-import { useState } from "react";
+import TimeAgo from "timeago-react";
+import { useContext, useState } from "react";
 import Link from "next/link";
-export default function PostCard({ content, profiles: profile }) {
+import { UserContext } from "@/contexts/userContext";
+export default function PostCard({
+  content,
+  created_at,
+  profiles: authorProfile,
+}) {
   const [dropdownopen, setDropdownopen] = useState(false);
   const dropdownLink =
     "flex gap-3 py-2 items-center hover:bg-socialBlue hover:text-white -mx-2 px-4 transition-all rounded-md hover:scale-110 hover:shadow-md shadow-gray-300";
+  const { profile: myProfile } = useContext(UserContext);
   return (
     <>
       <main className="">
@@ -24,7 +31,7 @@ export default function PostCard({ content, profiles: profile }) {
           <div className="flex gap-3 ">
             <div>
               <Link href={"/profile"}>
-                <Avatar url={profile.avatar} />
+                <Avatar url={authorProfile.avatar} />
               </Link>
             </div>
             <div className="grow">
@@ -34,12 +41,14 @@ export default function PostCard({ content, profiles: profile }) {
                     className="font-semibold cursor-pointer hover:underline"
                     href="#"
                   >
-                    {profile.name}&nbsp;
+                    {authorProfile.name}&nbsp;
                   </span>
                 </Link>
                 added a new <span className="text-socialBlue">weeblet</span>
               </p>
-              <p className="text-gray-500 text-sm ">2 Hour ago</p>
+              <p className="text-gray-500 text-sm ">
+                <TimeAgo datetime={created_at} />
+              </p>
             </div>
             <div className="relative">
               <button
@@ -102,7 +111,7 @@ export default function PostCard({ content, profiles: profile }) {
           </div>
           <div className="flex gap-3 mt-4">
             <div>
-              <Avatar />
+              <Avatar url={myProfile?.avatar} />
             </div>
             <div className="border grow rounded-full relative z-20">
               <textarea
