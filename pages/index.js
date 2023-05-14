@@ -21,20 +21,6 @@ export default function Home() {
   useEffect(() => {
     fetchPost();
   }, []);
-  // useEffect(() => {
-  //   if (!session?.user?.id) {
-  //     return;
-  //   }
-  //   supabase
-  //     .from("profiles")
-  //     .select()
-  //     .eq("id", session.user.id)
-  //     .then((results) => {
-  //       if (results.data.length) {
-  //         setProfile(results.data[0]);
-  //       }
-  //     });
-  // }, [session?.user?.id]);
 
   useEffect(() => {
     if (!session?.user?.id) {
@@ -44,9 +30,9 @@ export default function Home() {
       .from("profiles")
       .select()
       .eq("id", session.user.id)
-      .then((result) => {
-        if (result.data.length) {
-          setProfile(result.data[0]);
+      .then((results) => {
+        if (results.data.length) {
+          setProfile(results.data[0]);
         }
       });
   }, [session?.user?.id]);
