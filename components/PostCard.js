@@ -18,12 +18,14 @@ import { UserContext } from "@/contexts/userContext";
 export default function PostCard({
   content,
   created_at,
+  photos,
   profiles: authorProfile,
 }) {
   const [dropdownopen, setDropdownopen] = useState(false);
   const dropdownLink =
     "flex gap-3 py-2 items-center hover:bg-socialBlue hover:text-white -mx-2 px-4 transition-all rounded-md hover:scale-110 hover:shadow-md shadow-gray-300";
   const { profile: myProfile } = useContext(UserContext);
+  console.log(myProfile);
   return (
     <>
       <main className="">
@@ -88,13 +90,25 @@ export default function PostCard({
           </div>
           <div>
             <p className="my-3 text-sm">{content}</p>
-            <div className="overflow-hidden">
+            {photos?.length > 0 && (
+              <div
+                className="flex gap3
+              "
+              >
+                {photos.map((photo) => (
+                  <div>
+                    <img src={photo} alt="" className="rounded-md" />
+                  </div>
+                ))}
+              </div>
+            )}
+            {/* <div className="overflow-hidden">
               <img
                 className="rounded-md"
                 src="https://images.unsplash.com/photo-1600758208050-a22f17dc5bb9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                 alt=""
               />
-            </div>
+            </div> */}
           </div>
           <div className="flex gap-8 mt-5">
             <button className="flex gap-2 items-center">
