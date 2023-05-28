@@ -3,14 +3,41 @@ import Card from "@/components/Card";
 import FriendsInfo from "@/components/FriendsInfo";
 import Layout from "@/components/Layout";
 import PostCard from "@/components/PostCard";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { BsFilePostFill, BsInfoSquare } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { GrGallery } from "react-icons/gr";
 export default function ProfilePage() {
+  const [profile, setProfile] = useState(null);
   const router = useRouter();
+  const userId = router.query.id;
   const { asPath: pathname } = router;
+  const supabase = useSupabaseClient();
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    fetchUser();
+  }, [userId]);
+
+  function fetchUser() {
+    supabase
+      .from("profiles")
+      .select()
+      .eq("id", userId)
+      .then((result) => {
+        if (result.error) {
+          throw result.error;
+        }
+        if (result.data) {
+          setProfile(result.data[0]);
+        }
+      });
+  }
+  console.log(profile);
   const isPosts = pathname.includes("posts") || pathname === "/";
   const isAbout = pathname.includes("about");
   const isFriends = pathname.includes("friends");
@@ -30,11 +57,11 @@ export default function ProfilePage() {
               />
             </div>
             <div className="absolute top-28 left-2">
-              <Avatar size={"lg"} />
+              {profile && <Avatar url={profile.avatar} size={"lg"} />}
             </div>
             <div className="p-2">
               <div className="ml-28">
-                <h1 className=" text-3xl font-bold">Naruto Uchiha</h1>
+                <h1 className=" text-3xl font-bold">{profile?.name}</h1>
                 <p className="text-gray-500 leading-2">Hidden Leaf Village</p>
               </div>
             </div>
