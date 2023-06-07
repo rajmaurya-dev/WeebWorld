@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const session = useSession();
   const supabase = useSupabaseClient();
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
   const [profile, setProfile] = useState(null);
   useEffect(() => {
     fetchPost();
@@ -36,7 +36,7 @@ export default function Home() {
         }
       });
   }, [session?.user?.id]);
-
+  // console.log(profile);
   if (!session) {
     return <LoginPage />;
   }

@@ -1,9 +1,10 @@
 import Avatar from "@/components/Avatar";
 import Card from "@/components/Card";
+import Cover from "@/components/Cover";
 import FriendsInfo from "@/components/FriendsInfo";
 import Layout from "@/components/Layout";
 import PostCard from "@/components/PostCard";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ import { GrGallery } from "react-icons/gr";
 export default function ProfilePage() {
   const [profile, setProfile] = useState(null);
   const router = useRouter();
+  const session = useSession();
   const userId = router.query.id;
   const { asPath: pathname } = router;
   const supabase = useSupabaseClient();
@@ -30,14 +32,16 @@ export default function ProfilePage() {
       .eq("id", userId)
       .then((result) => {
         if (result.error) {
+          console.log("error");
           throw result.error;
         }
         if (result.data) {
           setProfile(result.data[0]);
+          console.log("noerror");
         }
       });
   }
-  console.log(profile);
+  const isMyUser = userId === session?.user?.id;
   const isPosts = pathname.includes("posts") || pathname === "/";
   const isAbout = pathname.includes("about");
   const isFriends = pathname.includes("friends");
@@ -50,19 +54,14 @@ export default function ProfilePage() {
       <Layout>
         <Card noPadding={true}>
           <div className="relative overflow-hidden rounded-md">
-            <div className="h-36 overflow-hidden flex justify-center items-center">
-              <img
-                className=""
-                src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?ixlib=rb-2.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=753&q=80"
-              />
-            </div>
+            <Cover url={profile?.cover} editable={isMyUser} />
             <div className="absolute top-28 left-2">
               {profile && <Avatar url={profile.avatar} size={"lg"} />}
             </div>
             <div className="p-2">
               <div className="ml-28">
                 <h1 className=" text-3xl font-bold">{profile?.name}</h1>
-                <p className="text-gray-500 leading-2">Hidden Leaf Village</p>
+                <p className="text-gray-500 leading-2">{profile?.place}</p>
               </div>
             </div>
             <div className="mt-2  ml-2 flex justify-around gap-0">
