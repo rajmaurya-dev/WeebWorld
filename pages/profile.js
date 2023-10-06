@@ -54,8 +54,12 @@ export default function ProfilePage() {
       <Layout>
         <Card noPadding={true}>
           <div className="relative overflow-hidden rounded-md">
-            <Cover url={profile?.cover} editable={isMyUser} />
-            <div className="absolute top-28 left-2">
+            <Cover
+              url={profile?.cover}
+              editable={isMyUser}
+              onChange={fetchUser}
+            />
+            <div className="absolute top-28 left-2 z-20">
               {profile && <Avatar url={profile.avatar} size={"lg"} />}
             </div>
             <div className="p-2">

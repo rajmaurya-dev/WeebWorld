@@ -25,20 +25,20 @@ export default function PostCard({
   const dropdownLink =
     "flex gap-3 py-2 items-center hover:bg-socialBlue hover:text-white -mx-2 px-4 transition-all rounded-md hover:scale-110 hover:shadow-md shadow-gray-300";
   const { profile: myProfile } = useContext(UserContext);
-  console.log(authorProfile.id);
+  console.log(authorProfile);
   return (
     <>
       <main className="">
         <Card>
           <div className="flex gap-3 ">
             <div>
-              <Link href={"/profile/" + authorProfile.id}>
+              <Link href={"/profile/" + authorProfile?.id}>
                 <Avatar url={authorProfile?.avatar} />
               </Link>
             </div>
             <div className="grow">
               <p>
-                <Link href={"/profile/" + authorProfile.id}>
+                <Link href={"/profile/" + authorProfile?.id}>
                   <span
                     className="font-semibold cursor-pointer hover:underline"
                     href="#"

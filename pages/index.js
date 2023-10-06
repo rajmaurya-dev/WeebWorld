@@ -40,6 +40,7 @@ export default function Home() {
   if (!session) {
     return <LoginPage />;
   }
+  console.log(posts);
   function fetchPost() {
     supabase
       .from("posts")
