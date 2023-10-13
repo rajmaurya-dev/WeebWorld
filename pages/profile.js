@@ -32,12 +32,10 @@ export default function ProfilePage() {
       .eq("id", userId)
       .then((result) => {
         if (result.error) {
-          console.log("error");
           throw result.error;
         }
         if (result.data) {
           setProfile(result.data[0]);
-          console.log("noerror");
         }
       });
   }
@@ -60,7 +58,14 @@ export default function ProfilePage() {
               onChange={fetchUser}
             />
             <div className="absolute top-28 left-2 z-20">
-              {profile && <Avatar url={profile.avatar} size={"lg"} />}
+              {profile && (
+                <Avatar
+                  url={profile.avatar}
+                  editable={isMyUser}
+                  onChange={fetchUser}
+                  size={"lg"}
+                />
+              )}
             </div>
             <div className="p-2">
               <div className="ml-28">

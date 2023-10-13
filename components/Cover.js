@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AiFillCamera } from "react-icons/ai";
 import Preloader from "./Preloader";
 import { useSession } from "@supabase/auth-helpers-react";
+import { uploadUserProfileImage } from "@/helpers/user";
 export default function Cover({ url, editable, onChange }) {
   const [isUploading, setIsUploading] = useState(false);
   const supabase = useSupabaseClient();
@@ -12,29 +13,16 @@ export default function Cover({ url, editable, onChange }) {
     const file = ev.target.files?.[0];
     if (file) {
       setIsUploading(true);
-      const newName = Date.now() + file.name;
-      const { data, error } = await supabase.storage
-        .from("covers")
-        .upload(newName, file);
+      await uploadUserProfileImage(
+        supabase,
+        session.user.id,
+        file,
+        "covers",
+        "cover"
+      );
       setIsUploading(false);
-      if (error) throw error;
-      console.log(data.path);
-      if (data) {
-        const url =
-          process.env.NEXT_PUBLIC_SUPABASE_URL +
-          "/storage/v1/object/public/covers/" +
-          data.path;
-        console.log(url);
-        supabase
-          .from("profiles")
-          .update({ cover: url })
-          .eq("id", session.user.id)
-          .then((result) => {
-            if (!result.error && onChange) {
-              onChange();
-            }
-            console.log(data);
-          });
+      if (onChange) {
+        onChange();
       }
     }
   };
