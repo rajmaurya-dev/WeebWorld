@@ -11,8 +11,13 @@ import { useEffect, useState } from "react";
 import { BsFilePostFill, BsInfoSquare } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 import { GrGallery } from "react-icons/gr";
+import { FiEdit } from "react-icons/fi";
+import { RiSave2Line } from "react-icons/ri";
 export default function ProfilePage() {
   const [profile, setProfile] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [name, setName] = useState("");
+  const [place, setPlace] = useState("");
   const router = useRouter();
   const session = useSession();
   const userId = router.query.id;
@@ -37,6 +42,18 @@ export default function ProfilePage() {
         if (result.data) {
           setProfile(result.data[0]);
         }
+      });
+  }
+  function saveProfile() {
+    supabase
+      .from("profiles")
+      .update({ name, place })
+      .eq("id", session.user.id)
+      .then((result) => {
+        if (!result.error) {
+          setProfile((prev) => ({ ...prev, name, place }));
+        }
+        setEditMode(false);
       });
   }
   const isMyUser = userId === session?.user?.id;
@@ -68,9 +85,72 @@ export default function ProfilePage() {
               )}
             </div>
             <div className="p-2">
-              <div className="ml-28">
-                <h1 className=" text-3xl font-bold">{profile?.name}</h1>
-                <p className="text-gray-500 leading-2">{profile?.place}</p>
+              <div className="ml-28 flex justify-between">
+                <div>
+                  <div className=" ">
+                    <h1 className="text-3xl font-bold">
+                      {!editMode && profile?.name}
+                    </h1>
+                    {editMode && (
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Your Name"
+                          value={name}
+                          onChange={(ev) => setName(ev.target.value)}
+                          className="text-xl font-bold border py-2 px-3 rounded-md"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="text-gray-500 leading-2">
+                    <h1 className="text-gray-500 leading-2">
+                      {" "}
+                      {!editMode && profile?.place}
+                    </h1>
+                    {editMode && (
+                      <div className="py-1">
+                        <input
+                          type="text"
+                          placeholder="You From"
+                          value={place}
+                          onChange={(ev) => setPlace(ev.target.value)}
+                          className=" border py-2 px-3 rounded-md"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  {isMyUser && !editMode && (
+                    <button
+                      onClick={() => {
+                        setEditMode(true);
+                        setName(profile.name);
+                        setPlace(profile?.place);
+                      }}
+                      className="flex gap-2 items-center bg-white shadow-md shadow-gray-400 py-1 px-2 rounded-md "
+                    >
+                      <div>
+                        <FiEdit />
+                      </div>
+                      Edit Profile
+                    </button>
+                  )}
+                  {isMyUser && editMode && (
+                    <div>
+                      <button
+                        onClick={saveProfile}
+                        className="flex gap-2 items-center bg-white shadow-md shadow-gray-400 py-1 px-2 rounded-md "
+                      >
+                        <div>
+                          <RiSave2Line />
+                        </div>
+                        Save Changes
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <div className="mt-2  ml-2 flex justify-around gap-0">
