@@ -85,10 +85,10 @@ export default function ProfilePage() {
               )}
             </div>
             <div className="p-2">
-              <div className="ml-28 flex justify-between">
+              <div className="ml-28 flex flex-col md:flex-row justify-between">
                 <div>
                   <div className=" ">
-                    <h1 className="text-3xl font-bold">
+                    <h1 className="text-xl font-bold">
                       {!editMode && profile?.name}
                     </h1>
                     {editMode && (
@@ -105,7 +105,6 @@ export default function ProfilePage() {
                   </div>
                   <div className="text-gray-500 leading-2">
                     <h1 className="text-gray-500 leading-2">
-                      {" "}
                       {!editMode && profile?.place}
                     </h1>
                     {editMode && (
@@ -134,7 +133,7 @@ export default function ProfilePage() {
                       <div>
                         <FiEdit />
                       </div>
-                      Edit Profile
+                      <h4>Edit Profile</h4>
                     </button>
                   )}
                   {isMyUser && editMode && (
@@ -146,7 +145,7 @@ export default function ProfilePage() {
                         <div>
                           <RiSave2Line />
                         </div>
-                        Save Changes
+                        <h4 className="">Save Changes</h4>
                       </button>
                     </div>
                   )}

@@ -9,8 +9,9 @@ import { useContext, useEffect, useState } from "react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { UserContext } from "@/contexts/userContext";
 import Preloader from "./Preloader";
+import { v4 as uuidv4 } from "uuid";
 export default function PostFormCard({ onPost }) {
-  const [content, setContent] = useState();
+  const [content, setContent] = useState("");
   const [uploads, setUploads] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const supabase = useSupabaseClient();
@@ -50,6 +51,7 @@ export default function PostFormCard({ onPost }) {
             result.data.path;
           console.log(url);
           setUploads((prevUploads) => [...prevUploads, url]);
+          console.log(uploads);
         } else {
           console.log(result);
         }
@@ -80,7 +82,7 @@ export default function PostFormCard({ onPost }) {
       {uploads.length > 0 && (
         <div className="flex gap-2">
           {uploads.map((upload) => (
-            <div className="mt-2">
+            <div className="mt-2" key={uuidv4()}>
               <img src={upload} alt="" className="w-auto h-24 rounded-md" />
             </div>
           ))}

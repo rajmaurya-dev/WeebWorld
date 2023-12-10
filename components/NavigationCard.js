@@ -23,7 +23,7 @@ export default function NavigationCard() {
   };
   return (
     <Card noPadding={true}>
-      <div className="md:px-12 py-2 flex md:flex-col gap-2 justify-between shadow-md shadow-gray-500 md:shadow-none">
+      <div className="md:px-12 py-2 flex md:flex-col gap-2 justify-between shadow-md shadow-gray-500 md:shadow-none ">
         <h2 className="text-gray-400 font-semibold hidden md:block">
           Navigation
         </h2>

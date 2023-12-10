@@ -14,6 +14,7 @@ import ClickOutHandler from "react-clickout-handler";
 import TimeAgo from "timeago-react";
 import { useContext, useState } from "react";
 import Link from "next/link";
+import { v4 as uuidv4 } from "uuid";
 import { UserContext } from "@/contexts/userContext";
 export default function PostCard({
   content,
@@ -25,7 +26,8 @@ export default function PostCard({
   const dropdownLink =
     "flex gap-3 py-2 items-center hover:bg-socialBlue hover:text-white -mx-2 px-4 transition-all rounded-md hover:scale-110 hover:shadow-md shadow-gray-300";
   const { profile: myProfile } = useContext(UserContext);
-  console.log(authorProfile);
+  // console.log(authorProfile);
+  // console.log(photos);
   return (
     <>
       <main className="">
@@ -96,7 +98,7 @@ export default function PostCard({
               "
               >
                 {photos.map((photo) => (
-                  <div>
+                  <div key={uuidv4()}>
                     <img src={photo} alt="" className="rounded-md" />
                   </div>
                 ))}

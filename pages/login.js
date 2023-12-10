@@ -17,9 +17,11 @@ export default function LoginPage() {
   return (
     <Layout hidenavigation={true}>
       <div className=" flex items-center justify-center">
-        <div className="max-w-xs grow mt-28">
+        <div className="max-w-xs grow mt-10">
           <h3 className="text-6xl mb-4 text-center text-gray-400">Login</h3>
-
+          <div className="grid place-content-center">
+            <img src="/logo.png" alt="logo" className="w-24" />
+          </div>
           <Card>
             <button
               onClick={loginWithGoogle}
