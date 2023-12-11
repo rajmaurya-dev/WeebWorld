@@ -69,7 +69,7 @@ export default function PostFormCard({ onPost }) {
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="grow p-3 h-14"
+            className="grow p-3 h-14 rounded-md"
             placeholder={`Whats on your mind ${profile && profile.name}`}
           />
         )}

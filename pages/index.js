@@ -36,11 +36,11 @@ export default function Home() {
         }
       });
   }, [session?.user?.id]);
-  // console.log(profile);
+
   if (!session) {
     return <LoginPage />;
   }
-  // console.log(posts);
+
   function fetchPost() {
     supabase
       .from("posts")

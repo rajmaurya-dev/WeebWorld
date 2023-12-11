@@ -129,7 +129,7 @@ export default function PostCard({
             <div>
               <Avatar url={myProfile?.avatar} />
             </div>
-            <div className="border grow rounded-full relative z-20">
+            <div className=" grow rounded-full relative z-20">
               <textarea
                 className="p-2 px-4 h-12 rounded-full w-full z-[999]"
                 placeholder="Leave a Weeblics"

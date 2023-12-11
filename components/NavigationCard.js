@@ -22,11 +22,11 @@ export default function NavigationCard() {
     await supabase.auth.signOut();
   };
   return (
-    <Card noPadding={true}>
+    <Card noPadding={true} className={`bg-pink-500`}>
       <div className="md:px-12 py-2 flex md:flex-col gap-2 justify-between shadow-md shadow-gray-500 md:shadow-none ">
-        <h2 className="text-gray-400 font-semibold hidden md:block">
-          Navigation
-        </h2>
+        <div className=" hidden md:block">
+          <img src="/icon.png" alt="" />
+        </div>
         <Link
           href="/"
           className={
